@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('category.show');
 });
 
 Auth::routes();
+
+Route::resource('posts', 'PostController');
+
+Route::resource(
+    '/comments',
+    'CommentController',
+    ['only' => ['store']]
+);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/summernote.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/summernote.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -59,13 +61,17 @@
                 </div>
             </div>
         </nav>
-
+        @yield('navbar_category')
         <main class="py-4">
+            @include('layouts.flash')
             @yield('content')
         </main>
     </div>
+    @yield('modal')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/summernote.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

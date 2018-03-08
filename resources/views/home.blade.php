@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                    {{ ucapan_mampu() }}
                 </div>
             </div>
         </div>
