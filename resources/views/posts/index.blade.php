@@ -27,7 +27,7 @@
                             <tr>
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->title}}</td>
-                                <td><span class="badge badge-primary">Category</span></td>
+                                <td><span class="badge badge-primary">{{ $post->category->name}}</span></td>
                                 <td>{{ $post->created_at}}</td>
                                 <td>{{ $post->updated_at}}</td>
                                 <td>

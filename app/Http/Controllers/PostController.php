@@ -4,13 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class PostController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //so jika user nak access method dalam Post Controller
+        //WAJIB LOGIN !
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        // select * from table posts;
-        $posts = Post::get();
+        // select * from table posts where user_id = $id;
+        $posts = Post::where('user_id', auth()->id())->get();
+        // dapat kan authenticate user , list post yang dia create
+        //$posts = auth()->user()->posts;
         //return view dalam folder resources/views/posts/index.blade.php dengan compact kan variable $posts
         return view('posts.index', compact('posts'));
     }
@@ -23,19 +38,19 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-
         //validate
         $request->validate([
-            'title' => 'required|min:5',
-            'content'  => 'required|min:10',
+            'title'     => 'required|min:5',
+            'content'   => 'required|min:10',
         ]);
 
         //create new object of class Post
         //create ke table posts
         $post              = new Post;
-        $post->title       = $request->title;
-        $post->content     = $request->content;
-        $post->category_id = $request->category_id;
+        $post->title       = strip_tags($request->title);
+        $post->content     = preg_replace('/<script(.*?)>(.*?)</script>/g', '', $request->content);
+        $post->category_id = $request->category;
+        $post->user_id     = auth()->id();
         $post->save();
 
         session()->flash('success', 'post berjaya dicipta');

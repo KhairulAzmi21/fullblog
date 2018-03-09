@@ -18,8 +18,8 @@
                         <input type="title" class="form-control" name="title" id="title" value="{{ old('title',$post->title) }}">
                     </div>
                     <div class="form-group">
-                        <label for="body">Body:</label>
-                        <textarea class="form-control" id="body" name="content" rows="3" >{{ old('body',$post->body) }}</textarea>
+                        <label for="content">Body:</label>
+                        <textarea class="form-control" id="content" name="content" rows="3" >{{ old('body',$post->content) }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="category">Category:</label>
@@ -37,4 +37,18 @@
     </div>
 </div>
 </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#content').summernote({
+                height: 300,
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
+    </script>
 @endsection

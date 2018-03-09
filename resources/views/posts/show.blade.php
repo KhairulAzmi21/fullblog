@@ -5,13 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
         <div class="card">
-            <div class="card-header"><b>{{ $post->title }}</b> <i>ditulis oleh</i> <b>NAMA</b>
+            <div class="card-header"><b>{{ $post->title }}</b> <i>ditulis oleh</i> <b>{{ auth()->user()->name }}</b>
                     <span class="float-right">
                         {{ $post->created_at->diffForHumans() }}
                     </span>
             </div>
             <div class="card-body">
-                {{ $post->content }}
+                <!-- render html -->
+                {!! $post->content !!}
+
             </div>
 
         </div>
@@ -31,7 +33,7 @@
         <!-- kalau takde comment, dia akan pergi ke aliases empty blade -->
         @forelse($post->comments as $comment)
         <div class="card mt-4">
-            <div class="card-header card">Nama Orang
+            <div class="card-header card"> {{ $comment->user->name }}
                     <span class="float-right">
                         {{ $comment->created_at->diffForHumans() }}
                     </span>

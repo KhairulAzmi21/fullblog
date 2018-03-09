@@ -3,6 +3,7 @@
 /*
 |--------------------------------------------------------------------------
 | Web Routes
+composer require fzaninotto/faker dev-master
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -12,7 +13,7 @@
 */
 
 Route::get('/', function () {
-    return view('category.show');
+    return view('welcome');
 });
 
 Auth::routes();

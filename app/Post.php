@@ -10,4 +10,11 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    // category_id(FK) dalam table posts
+    // milik table categories(Modal Category)
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
